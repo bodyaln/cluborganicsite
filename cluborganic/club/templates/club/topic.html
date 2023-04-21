@@ -1,0 +1,83 @@
+{% extends 'club/base.html' %}
+
+{% block content %}
+ <div id="preloader"></div>
+
+<main class="discussing__section">
+    <div class="container">
+        <h2 class="title-usual title-32">Обговорення</h2>
+      <h3 class="title-24 discussing__section__title">Тема обговорення:</h3>
+      <h4 class="title-24 discussing__section__topic">{{topic.name}}</h4>
+      <div class="discussing__section__menu">
+        <h3 class="title-24 discussing__answear__title">Відповіді:</h3>
+          <button class="btn btn-addtopic" id="addtopic_btn">
+            <div class="discussing__section__btn">
+              <div class="svg-wrapper-1">
+                <div class="svg-wrapper">
+                  <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Edit / Add_Plus">
+                    <path id="Vector" d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    </svg>
+                </div>
+              </div>
+              <span>Додати відповідь</span>
+            </div>
+          </button>
+        <form method="post" action="{% url 'addtopicanswear' topic.pk %}" >
+           {% csrf_token %}
+          <div class="discussing__section__addtopic">
+            <label for="addanswear" class="title-24 discussing__section__addtopic__label">Ваша відповідь:</label>
+            <textarea name="addanswear" id="addtopic_textarea" cols="30" rows="3" value = "{{addanswear}}"></textarea>
+             <input type="hidden" name="first_name" value="{{request.user}}">
+              <input type="hidden" name="time_create" value="{{now}}">
+              <input type="hidden" name="topic_id" value="{{ topic.pk }}">
+            <button class="btn-addtopicsubmit" type="submit">Додати</button>
+          </div>
+        </form>
+      </div>
+
+      <ul class="discussing__container">
+      {% for a in answears %}
+
+        <li class="discussing__container__item">
+            <div class="discussing__container__item__info"><h3> {{a.first_name}}</h3> <h3>{{a.formatted_time_create}}</h3></div>
+            <div class="discussing__container__item__answear">
+              {{a.answer}}
+            </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </main>
+<script>
+
+
+  function DropdownBlock(btn){
+     let content = btn.nextSibling.nextSibling;
+    if(content.style.maxHeight){
+        content.style.maxHeight = null;
+    }
+    else{
+        content.style.maxHeight = content.scrollHeight + 'px';
+    }
+}
+let addTopicBtn = document.querySelector('#addtopic_btn');
+addTopicBtn.addEventListener('click', ()=>{
+        DropdownBlock(addTopicBtn);
+    });
+
+    function MediaHeader(x) {
+  if (x.matches) { // If media query matches
+    document.querySelector('header').style.display = "none";
+    document.querySelector('.discussing__section').style.padding = "20px 0 0 0";
+  } else {
+    document.querySelector('header').style.display = "block";
+  }
+}
+
+var x = window.matchMedia("(max-width: 560px)")
+MediaHeader(x) // Call listener function at run time
+x.addListener(MediaHeader) // Attach listener function on state changes
+</script>
+{% endblock %}

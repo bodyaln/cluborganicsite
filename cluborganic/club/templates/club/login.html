@@ -1,0 +1,102 @@
+{% extends 'club/base.html' %}
+{% block content %}
+ <div id="preloader"></div>
+
+    <section class="enter">
+      <div class="container">
+        <div class="enter__name">
+            <h3 class="title-usual title-32 ">Вхід</h3>
+        </div>
+        <div class="enter__bottom">
+            {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+                {% if message.tags %}  <li class="{{ message.tags }}">{{ message }}</li>{% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+            <form method="post" class="enter__form">
+                  {% csrf_token %}
+
+            <div class="enter__inputs">
+              <div class="enter__input">
+                <label for="username">Логін</label>
+                  <input required name="username" id="username" type="text" placeholder="Ваш логін">
+              </div>
+              <div class="enter__input" id="passwordenterblock">
+                <label for="password">Пароль</label>
+                  <input type="password" id="password-enter" name="password"  required placeholder="Введіть ваш пароль">
+                  <a class="passwordenter-control"></a>
+              </div>
+            </div>
+            <div class="enter__triggers">
+
+              <div class="enter__btns ">
+                <button type="submit" class="btn btn-enter btn-send-enter">
+                  <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <span>Війти</span>
+                </button>
+                    <button type="reset" class="btn btn-clear btn-clear-orders">
+                      <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 256 256" xml:space="preserve">
+
+                              <defs>
+                              </defs>
+                              <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                                  <path d="M 72.002 10.915 H 17.998 c -3.134 0 -5.675 2.541 -5.675 5.675 v 7.049 h 65.354 V 16.59 C 77.677 13.456 75.136 10.915 72.002 10.915 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                  <path d="M 57.546 15.544 H 32.454 c -1.42 0 -2.571 -1.151 -2.571 -2.571 V 6.19 c 0 -3.413 2.777 -6.19 6.19 -6.19 h 17.854 c 3.413 0 6.191 2.777 6.191 6.19 v 6.782 C 60.117 14.392 58.966 15.544 57.546 15.544 z M 35.026 10.401 h 19.949 V 6.19 c 0 -0.578 -0.47 -1.047 -1.048 -1.047 H 36.073 c -0.578 0 -1.047 0.47 -1.047 1.047 V 10.401 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                  <path d="M 74.016 28.782 H 15.984 v 55.543 c 0 3.134 2.541 5.675 5.675 5.675 h 46.682 c 3.134 0 5.675 -2.541 5.675 -5.675 V 28.782 z M 31.915 79.328 c 0 1.42 -1.151 2.571 -2.571 2.571 c -1.42 0 -2.571 -1.151 -2.571 -2.571 V 41.509 c 0 -1.42 1.151 -2.571 2.571 -2.571 c 1.42 0 2.571 1.151 2.571 2.571 V 79.328 z M 47.571 79.328 c 0 1.42 -1.151 2.571 -2.571 2.571 s -2.571 -1.151 -2.571 -2.571 V 41.509 c 0 -1.42 1.151 -2.571 2.571 -2.571 s 2.571 1.151 2.571 2.571 V 79.328 z M 63.228 79.328 c 0 1.42 -1.151 2.571 -2.571 2.571 c -1.42 0 -2.571 -1.151 -2.571 -2.571 V 41.509 c 0 -1.42 1.151 -2.571 2.571 -2.571 c 1.42 0 2.571 1.151 2.571 2.571 V 79.328 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                              </g>
+                          </svg>
+                        </div>
+                      </div>
+                      <span>Очистити</span>
+                    </button>
+              </div>
+          </div>
+       </form>
+        </div>
+    </div>
+  </section>
+
+ <script>
+  const appHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty('--app-height', `${window.innerHeight}px`);
+}
+window.addEventListener('resize', appHeight);
+appHeight();
+
+document.querySelector('.passwordenter-control').addEventListener('click', ()=>{
+        if (document.querySelector('#password-enter').getAttribute('type') == 'password'){
+            document.querySelector('.passwordenter-control').classList.add('view');
+            document.querySelector('#password-enter').setAttribute('type', 'text');
+        } else {
+            document.querySelector('.passwordenter-control').classList.remove('view');
+            document.querySelector('#password-enter').setAttribute('type', 'password');
+        }
+        return false;
+    });
+
+
+    function MediaHeader(x) {
+  if (x.matches) { // If media query matches
+    document.querySelector('header').style.display = "none";
+  } else {
+    document.querySelector('header').style.display = "block";
+  }
+}
+
+var x = window.matchMedia("(max-width: 560px)")
+MediaHeader(x) // Call listener function at run time
+x.addListener(MediaHeader) // Attach listener function on state changes
+</script>
+{% endblock %}
