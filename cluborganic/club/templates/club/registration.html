@@ -105,17 +105,6 @@
 window.addEventListener('resize', appHeight);
 appHeight();
 
-document.querySelector('.password-control').addEventListener('click', ()=>{
-        if (document.querySelector('#password-input').getAttribute('type') == 'password'){
-            document.querySelector('.password-control').classList.add('view');
-            document.querySelector('#password-input').setAttribute('type', 'text');
-        } else {
-            document.querySelector('.password-control').classList.remove('view');
-            document.querySelector('#password-input').setAttribute('type', 'password');
-        }
-        return false;
-    });
-
     function MediaHeader(x) {
   if (x.matches) { // If media query matches
     document.querySelector('header').style.display = "none";

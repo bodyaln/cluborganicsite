@@ -17,7 +17,6 @@
 	<link rel="apple-touch-icon" sizes="120x120" href="{% static 'club/icons/favicon/apple-icon-120x120.png' %}">
 	<link rel="apple-touch-icon" sizes="152x152" href="{% static 'club/icons/favicon/apple-icon-152x152.png' %}">
 	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'club/icons/favicon/apple-icon-57x57.png' %}">
-	<link rel="icon" type="image/png" sizes="192x192" href="{% static 'club/icons/favicon/android-icon-192x192.png' %}">
 	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'club/icons/favicon/favicon-32x32.png' %}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'club/icons/favicon/favicon-96x96.png' %}">
 	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'club/icons/favicon/favicon-16x16.png' %}">
@@ -122,20 +121,17 @@
 
                                                                        {% if request.user.is_authenticated %}
                                                                            <li>
-                                                                                <a>Вийти</a>
+                                                                                <a href="{% url 'logout' %}">Вийти</a>
                                                                         </li>
                                                                         {% else %}
 
-                                                                        <li data-registration>
-                                                                                <a>Реєстрація</a>
+                                                                        <li>
+                                                                                <a href="{% url 'register' %}">Реєстрація</a>
                                                                         </li>
                                                                         <li>
-                                                                                <a data-enter>Війти</a>
+                                                                                <a href="{% url 'login' %}">Війти</a>
                                                                         </li>
 
-                                                                        <li>
-                                                                                <a>Вийти</a>
-                                                                        </li>
                                                                         {% endif %}
                                                                         <!-- <li><a href="#"><img src="icons/Flag_of_Ukraine.png" alt="ukraine" class="header__language-img"></a></li>
                                                                         <li><a href="#"><img src="icons/Flag_of_Slovakia1.png" alt="slovakia" class="header__language-img"></a></li>
@@ -2310,12 +2306,18 @@
                                                         Меню
                                                 </h3>
                                                 <ul class="footer__links__list">
+                                                    {% if request.user.is_authenticated %}
+                                                    <li class="footer__links__list_item">
+                                                                <a href="{% url 'logout' %}">Вийти</a>
+                                                        </li>
+                                                    {% else %}
                                                         <li class="footer__links__list_item">
-                                                                <a data-registration>Реєстрація</a>
+                                                                <a href="{% url 'register' %}" >Реєстрація</a>
                                                         </li>
                                                         <li class="footer__links__list_item">
-                                                                <a data-enter>Війти</a>
+                                                                <a href="{% url 'login' %}">Війти</a>
                                                         </li>
+                                                    {% endif %}
                                                         <!-- <li class="footer__links__list_item"><a href="#">Вийти</a></li> -->
                                                 </ul>
                                         </div>

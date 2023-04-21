@@ -75,17 +75,6 @@
 window.addEventListener('resize', appHeight);
 appHeight();
 
-document.querySelector('.passwordenter-control').addEventListener('click', ()=>{
-        if (document.querySelector('#password-enter').getAttribute('type') == 'password'){
-            document.querySelector('.passwordenter-control').classList.add('view');
-            document.querySelector('#password-enter').setAttribute('type', 'text');
-        } else {
-            document.querySelector('.passwordenter-control').classList.remove('view');
-            document.querySelector('#password-enter').setAttribute('type', 'password');
-        }
-        return false;
-    });
-
 
     function MediaHeader(x) {
   if (x.matches) { // If media query matches
